@@ -1,12 +1,10 @@
 import iframeResize from 'iframe-resizer/js/iframeResizer'
-import PropTypes from 'prop-types'
 import React, { useEffect, useImperativeHandle, useRef } from 'react'
 import warning from 'warning'
 
 import filterIframeAttribs from './filter-iframe-attribs'
 
-const IframeResizer = (props) => {
-  const { title, forwardRef, ...rest } = props
+const IframeResizer = ({ title = 'iframe', forwardRef, ...rest }) => {
   const iframeProps = filterIframeAttribs(rest)
   const iframeRef = useRef(null)
 
@@ -40,14 +38,6 @@ const IframeResizer = (props) => {
   }))
 
   return <iframe title={title} {...iframeProps} ref={iframeRef} />
-}
-
-IframeResizer.defaultProps = {
-  title: 'iframe',
-}
-
-IframeResizer.propTypes = {
-  title: PropTypes.string,
 }
 
 export default IframeResizer
